@@ -30,10 +30,9 @@ class MainPresenter(private val interactor: MainInteractor) {
         view?.openEmailApp(
             "Запрос на работу",
             """
-                Я хочу чтобы вы сделали то-то
+                Я хочу чтобы Вы сделали: ${checkedExercises.joinToString(", ")}
                 Имя: $name
                 Телефон: $phone
-                Работа: $checkedExercises
                 Координаты: ${location?.latitude};${location?.longitude}
             """.trimIndent(),
             "eremin.i@bitrix24.ru"
