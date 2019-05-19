@@ -1,0 +1,62 @@
+class MainUI : AnkoComponent<MainActivity> {
+    lateinit var mDrawer: DrawerLayout
+    lateinit var mToolbar: Toolbar
+
+    // Массивы, содержащие элементы меню:
+    // View и значения, которые они собой олицетворяют
+    val menuItems = arrayListOf<TextView>()
+    val menuValues = arrayOf(15, 30, 60)
+
+    val mContainerId = 1
+
+    // Метод, возвращающий корневой View и все дочерние элементы
+    override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
+        mDrawer = drawerLayout {
+            lparams(width = matchParent, height = matchParent)
+            createContainer()
+            createNavigationView()
+        }
+
+        return mDrawer
+    }
+
+    // Верхняя панель приложения и контейнер,
+    // в котором позже мы поместим основной интерфейс приложения
+    fun _DrawerLayout.createContainer() {
+        verticalLayout {
+            lparams(width = matchParent, height = matchParent)
+
+            mToolbar = toolbar {
+                lparams(width = matchParent, height = dip(56))
+                backgroundResource = R.color.colorPrimary
+            }
+
+            frameLayout {
+                id = mContainerId
+                lparams(width = matchParent, height = matchParent)
+            }
+        }
+    }
+
+    // Боковое меню
+    fun _DrawerLayout.createNavigationView(ui: AnkoContext<MainActivity>) {
+        navigationView {
+            lparams(height = matchParent, gravity = GravityCompat.START)
+
+            verticalLayout {
+                padding = dip(16)
+
+                menuValues.forEach {
+                    val tv = textView {
+                        lparams(width = matchParent, height = wrapContent)
+                        padding = dip(8)
+                        text = "$it seconds"
+                        textSize = 17f
+                    }
+
+                    menuItems.add(tv)
+                }
+            }
+        }
+    }
+}
