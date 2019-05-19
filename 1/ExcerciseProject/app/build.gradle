@@ -32,6 +32,9 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
+//    implementation 'io.nlopez.smartlocation:library:3.3.3'
+    implementation 'com.github.delight-im:Android-SimpleLocation:v1.0.1'
+
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation("com.squareup.okhttp3:okhttp:3.10.0")
