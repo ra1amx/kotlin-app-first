@@ -1,6 +1,6 @@
 package example.com.excerciseproject
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.layout_item_exercise.view.*
  * Created by Mukhamed Issa on 5/19/19.
  */
 class ExercisesAdapter(private var exercises: List<Work>)
-    : RecyclerView.Adapter<ExercisesAdapter.ExerciseViewHolder>() {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<ExercisesAdapter.ExerciseViewHolder>() {
 
     var checkedExercises = mutableListOf<Work>()
 
@@ -29,7 +29,7 @@ class ExercisesAdapter(private var exercises: List<Work>)
         notifyDataSetChanged()
     }
 
-    inner class ExerciseViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    inner class ExerciseViewHolder(private val view: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         fun bindExercise(exercise: Work) {
             with(view.exercise_checkbox) {

@@ -1,8 +1,10 @@
 package example.com.excerciseproject.view
 
+import android.Manifest
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.github.florent37.runtimepermission.RuntimePermission.askPermission
 import de.cketti.mailto.EmailIntentBuilder
 import example.com.excerciseproject.ExercisesAdapter
 import example.com.excerciseproject.Work
@@ -24,25 +26,33 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(example.com.excerciseproject.R.layout.activity_main)
         simpleLocation = SimpleLocation(this)
-        simpleLocation!!.setListener {
-            simpleLocation?.position?.let { position ->
-                location = Coordinate(position.latitude, position.longitude)
+
+        val permission = askPermission(this@MainActivity, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        permission.onAccepted {
+            simpleLocation!!.setListener {
+                simpleLocation?.position?.let { position ->
+                    location = Coordinate(position.latitude, position.longitude)
+                }
             }
+            simpleLocation!!.beginUpdates()
         }
+        permission.onDenied {
+            Toast.makeText(this@MainActivity, "Геолокация нужна для корректной работы приложения", Toast.LENGTH_LONG).show()
+            SimpleLocation.openSettings(this)
+        }
+        permission.ask()
+
         exercisesAdapter = ExercisesAdapter(emptyList())
         presenter.attachView(this)
 
         setupViews()
     }
 
-    override fun onResume() {
-        super.onResume()
-        simpleLocation!!.beginUpdates()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        simpleLocation?.endUpdates()
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isFinishing) {
+            simpleLocation?.endUpdates()
+        }
     }
 
     private fun setupViews() {
@@ -79,7 +89,7 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun showWork(works: List<Work>) {
         exercisesAdapter!!.setItems(works)
         with(exercises_list) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             adapter = exercisesAdapter
         }
     }
