@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">ExcerciseProject</string>
 
-    <string name="gender_male">Мужской</string>
-    <string name="gender_female">Женский</string>
-
-    <string name="choose_gender_label">Выберите пол</string>
+    <string name="choose_work">Выберите тип работы</string>
     <string name="choose_exercises_label">Выберите упражнения</string>
     <string name="send_label">Отправить</string>
     <string name="input_name_hint">Введите имя</string>
     <string name="input_phone_hint">Введите номер</string>
+
+    <string name="repair">Ремонт</string>
+    <string name="service">Сервис</string>
+    <string name="send_coordinates">Отправить мои координаты</string>
 </resources>

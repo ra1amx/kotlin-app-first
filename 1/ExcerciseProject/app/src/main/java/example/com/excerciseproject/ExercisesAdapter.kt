@@ -9,10 +9,10 @@ import kotlinx.android.synthetic.main.layout_item_exercise.view.*
 /**
  * Created by Mukhamed Issa on 5/19/19.
  */
-class ExercisesAdapter(private val exercises: ArrayList<Exercise>)
+class ExercisesAdapter(private var exercises: List<Work>)
     : RecyclerView.Adapter<ExercisesAdapter.ExerciseViewHolder>() {
 
-    val checkedExercises = ArrayList<Exercise>()
+    var checkedExercises = mutableListOf<Work>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ExerciseViewHolder(LayoutInflater.from(parent.context)
@@ -24,9 +24,14 @@ class ExercisesAdapter(private val exercises: ArrayList<Exercise>)
 
     override fun getItemCount() = exercises.size
 
+    fun setItems(works: List<Work>) {
+        this.exercises = works.toMutableList()
+        notifyDataSetChanged()
+    }
+
     inner class ExerciseViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
-        fun bindExercise(exercise: Exercise) {
+        fun bindExercise(exercise: Work) {
             with(view.exercise_checkbox) {
                 text = exercise.name
                 setOnCheckedChangeListener { _, checked ->
