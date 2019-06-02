@@ -16,8 +16,11 @@ import com.google.android.gms.location.LocationListener
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import example.com.excerciseproject.R
+import example.com.excerciseproject.presenter.ProcessOrderPresenter
 
 /**
  * @since 2019
@@ -27,25 +30,37 @@ class ProcessOrderActivity : AppCompatActivity(),
     OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener,
-    LocationListener {
+    LocationListener,
+    ProcessOrderView
+{
 
     private var mapFragment: MapFragment? = null
     private var googleMap: GoogleMap? = null
     private var googleApiClient: GoogleApiClient? = null
     private var mapView: View? = null
 
+    private val presenter = ProcessOrderPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_process_order)
+        presenter.onAttach(this)
 
         mapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment
         mapView = mapFragment!!.view
         mapFragment!!.getMapAsync(this)
     }
 
+    override fun showCoordinate(coordinate: LatLng) {
+        googleMap?.clear()
+        googleMap?.addMarker(MarkerOptions().position(coordinate))
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
+        googleMap.setOnMapClickListener {
+            presenter.onClickMap(it)
+        }
 
         try {
             // Customise the styling of the base map using a JSON object defined
