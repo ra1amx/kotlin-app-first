@@ -1,8 +1,8 @@
 package example.com.excerciseproject.presenter
 
 import example.com.excerciseproject.Work
+import example.com.excerciseproject.model.WorkType
 import example.com.excerciseproject.model.storage.Storage
-import example.com.excerciseproject.view.WorkType
 import example.com.excerciseproject.view.select.SelectView
 import example.com.excerciseproject.view.select.Selectable
 

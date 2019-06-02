@@ -1,24 +1,24 @@
-package example.com.excerciseproject.view
+package example.com.excerciseproject.view.main
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.florent37.runtimepermission.RuntimePermission.askPermission
 import de.cketti.mailto.EmailIntentBuilder
-import example.com.excerciseproject.ExercisesAdapter
 import example.com.excerciseproject.R
 import example.com.excerciseproject.Work
 import example.com.excerciseproject.model.Coordinate
 import example.com.excerciseproject.model.MainInteractor
 import example.com.excerciseproject.presenter.MainPresenter
+import example.com.excerciseproject.view.order.ProcessOrderActivity
 import example.com.excerciseproject.view.select.WorkTypePagerAdapter
 import im.delight.android.location.SimpleLocation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
 
-    private var exercisesAdapter: ExercisesAdapter? = null
     private val presenter = MainPresenter(MainInteractor())
     private var simpleLocation: SimpleLocation? = null
     private var location: Coordinate? = null
@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), MainView {
         }
         permission.ask()
 
-//        exercisesAdapter = ExercisesAdapter(emptyList())
         presenter.attachView(this)
 
         setupViews()
@@ -60,7 +59,9 @@ class MainActivity : AppCompatActivity(), MainView {
     private fun setupViews() {
         view_pager.adapter = WorkTypePagerAdapter(this, supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
-
+        send_button.setOnClickListener {
+            startActivity(Intent(this, ProcessOrderActivity::class.java))
+        }
 
 //        work_group.setOnCheckedChangeListener { _, i ->
 //            val workType = when (i) {

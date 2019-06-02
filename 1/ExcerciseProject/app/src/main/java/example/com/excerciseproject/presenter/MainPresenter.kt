@@ -3,8 +3,8 @@ package example.com.excerciseproject.presenter
 import example.com.excerciseproject.Work
 import example.com.excerciseproject.model.Coordinate
 import example.com.excerciseproject.model.MainInteractor
-import example.com.excerciseproject.view.MainView
-import example.com.excerciseproject.view.WorkType
+import example.com.excerciseproject.view.main.MainView
+import example.com.excerciseproject.model.WorkType
 
 /**
  * @since 2019

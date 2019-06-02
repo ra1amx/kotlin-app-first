@@ -1,4 +1,4 @@
-package example.com.excerciseproject.view
+package example.com.excerciseproject.view.main
 
 import example.com.excerciseproject.Work
 

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.excerciseproject.R
 import example.com.excerciseproject.Work
 import example.com.excerciseproject.presenter.SelectPresenter
-import example.com.excerciseproject.view.WorkType
+import example.com.excerciseproject.model.WorkType
 import example.com.excerciseproject.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_selector.view.*
 import ru.whalemare.cells.CellAdapter

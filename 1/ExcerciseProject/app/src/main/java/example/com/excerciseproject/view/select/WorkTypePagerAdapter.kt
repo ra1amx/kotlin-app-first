@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import example.com.excerciseproject.view.WorkType
+import example.com.excerciseproject.model.WorkType
 
 /**
  * @since 2019

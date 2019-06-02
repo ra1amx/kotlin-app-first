@@ -1,7 +1,7 @@
 package example.com.excerciseproject.model.storage
 
 import example.com.excerciseproject.Work
-import example.com.excerciseproject.view.WorkType
+import example.com.excerciseproject.model.WorkType
 import example.com.excerciseproject.view.select.Selectable
 
 /**

@@ -9,7 +9,9 @@
 
     <string name="repair">Ремонт</string>
     <string name="service">Сервис</string>
-    <string name="send_coordinates">Отправить мои координаты</string>
+    <string name="send_coordinates">Прикрепить координаты</string>
     <string name="item">Товар</string>
     <string name="text_next">Далее</string>
+
+    <string name="google_maps_key">AIzaSyBVb_96CF4Caz69KduaF9RWLqUpZyJvW0E</string>
 </resources>

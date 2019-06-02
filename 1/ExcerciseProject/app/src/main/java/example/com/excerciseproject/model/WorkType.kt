@@ -1,4 +1,4 @@
-package example.com.excerciseproject.view
+package example.com.excerciseproject.model
 
 import example.com.excerciseproject.R
 import example.com.excerciseproject.Work
