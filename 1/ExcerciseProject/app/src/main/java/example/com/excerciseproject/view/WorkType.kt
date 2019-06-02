@@ -1,13 +1,14 @@
 package example.com.excerciseproject.view
 
+import example.com.excerciseproject.R
 import example.com.excerciseproject.Work
 
 /**
  * @since 2019
  * @author Anton Vlasov - whalemare with jun Ivan Eremin
  */
-enum class WorkType {
-    REPAIR {
+enum class WorkType(val title: Int) {
+    REPAIR(title = R.string.repair) {
         override fun getWorks(): List<Work> {
             return listOf(
                 Work("Сломалась сантехника"),
@@ -18,7 +19,7 @@ enum class WorkType {
             )
         }
     },
-    SERVICE {
+    SERVICE(title = R.string.service) {
         override fun getWorks(): List<Work> {
             return listOf(
                 Work("Постричь газон"),
@@ -26,6 +27,14 @@ enum class WorkType {
                 Work("Вывезти мусор"),
                 Work("Почистить канализацию"),
                 Work("Настроить антенну/подключить ТВ")
+            )
+        }
+    },
+    DELIVERY(title = R.string.item) {
+        override fun getWorks(): List<Work> {
+            return listOf(
+                Work("Доставить воду"),
+                Work("Привести порошок")
             )
         }
     };

@@ -10,4 +10,5 @@
     <string name="repair">Ремонт</string>
     <string name="service">Сервис</string>
     <string name="send_coordinates">Отправить мои координаты</string>
+    <string name="item">Товар</string>
 </resources>
