@@ -40,13 +40,13 @@ class MainInteractor {
 
     val service = retrofit.create(BitrixService::class.java)
 
-    suspend fun sendWebHook(name: String, phone: String, coordinates: Coordinate) {
+    suspend fun sendWebHook(name: String, phone: String, comment: String) {
         val map = mapOf(
             "FIRST_NAME" to name,
             "PHONE" to phone,
-            "COMMENTS" to coordinates.toString()
+            "COMMENTS" to comment
         )
-        val responseDeferred = service.sendWebHook(map)
+        val responseDeferred = service.sendWebHook(map).await()
 
 //        return responseDeferred.await()
     }
