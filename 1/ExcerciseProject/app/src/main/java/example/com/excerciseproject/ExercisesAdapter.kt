@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.layout_item_exercise.view.*
 
 /**
- * Created by Mukhamed Issa on 5/19/19.
+ * Created on 5/19/19.
  */
 class ExercisesAdapter(private var exercises: List<Work>)
     : androidx.recyclerview.widget.RecyclerView.Adapter<ExercisesAdapter.ExerciseViewHolder>() {

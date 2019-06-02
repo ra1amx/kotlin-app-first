@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ExcerciseProject</string>
+    <string name="app_name">Домашний мастер</string>
 
     <string name="choose_work">Выберите тип работы</string>
-    <string name="choose_exercises_label">Выберите упражнения</string>
+    <string name="choose_exercises_label">Выберите задания</string>
     <string name="send_label">Отправить</string>
     <string name="input_name_hint">Введите имя</string>
     <string name="input_phone_hint">Введите номер</string>

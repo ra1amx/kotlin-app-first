@@ -4,28 +4,28 @@ import example.com.excerciseproject.Work
 
 /**
  * @since 2019
- * @author Anton Vlasov - whalemare
+ * @author Anton Vlasov - whalemare with jun Ivan Eremin
  */
 enum class WorkType {
     REPAIR {
         override fun getWorks(): List<Work> {
             return listOf(
-                Work("Male exercise 1"),
-                Work("Male exercise 2"),
-                Work("Male exercise 3"),
-                Work("Male exercise 4"),
-                Work("Male exercise 5")
+                Work("Сломалась сантехника"),
+                Work("Не показывает ТВ"),
+                Work("Сломалась мебель"),
+                Work("Нет электричества"),
+                Work("Надо покрасить(забор/вернаду и т.д.)")
             )
         }
     },
     SERVICE {
         override fun getWorks(): List<Work> {
             return listOf(
-                Work("Female exercise 1"),
-                Work("Female exercise 2"),
-                Work("Female exercise 3"),
-                Work("Female exercise 4"),
-                Work("Female exercise 5")
+                Work("Постричь газон"),
+                Work("Вскопать участок"),
+                Work("Вывезти мусор"),
+                Work("Почистить канализацию"),
+                Work("Настроить антенну/подключить ТВ")
             )
         }
     };
