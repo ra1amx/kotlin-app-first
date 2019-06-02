@@ -1,10 +1,13 @@
 package example.com.excerciseproject.model
 
+import com.ihsanbal.logging.LoggingInterceptor
 import com.squareup.moshi.Moshi
 import example.com.excerciseproject.Constanst.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import ru.whalemare.cells.BuildConfig
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 /**
@@ -18,13 +21,13 @@ class MainInteractor {
         .build()
 
     val okHttpClient = OkHttpClient.Builder()
-//            .addInterceptor(LoggingInterceptor.Builder()
-//                .loggable(BuildConfig.DEBUG)
-//                .setLevel(Level.BODY)
-//                .log(okhttp3.internal.platform.Platform.INFO)
-//                .executor(Executors.newSingleThreadExecutor())
-//                .build()
-//            )
+            .addInterceptor(LoggingInterceptor.Builder()
+                .loggable(BuildConfig.DEBUG)
+                .setLevel(com.ihsanbal.logging.Level.BODY)
+                .log(okhttp3.internal.platform.Platform.INFO)
+                .executor(Executors.newSingleThreadExecutor())
+                .build()
+            )
         .retryOnConnectionFailure(true)
         .readTimeout(1, TimeUnit.MINUTES)
         .connectTimeout(20, TimeUnit.SECONDS)
@@ -40,14 +43,17 @@ class MainInteractor {
 
     val service = retrofit.create(BitrixService::class.java)
 
-    suspend fun sendWebHook(name: String, phone: String, comment: String) {
+    suspend fun sendWebHook(name: String, title: String, phone: String, comment: String): WebHookResponse {
         val map = mapOf(
-            "FIRST_NAME" to name,
-            "PHONE" to phone,
-            "COMMENTS" to comment
+            "fields[FIRST_NAME]" to name,
+            "fields[NAME]" to name,
+            "fields[TITLE]" to title,
+            "fields[PHONE_MOBILE]" to phone,
+            "fields[PHONE]" to phone,
+            "fields[COMMENTS]" to comment,
+            "fields[STATUS_DESCRIPTION]" to "mobile",
+            "fields[STATUS_ID]" to "NEW"
         )
-        val responseDeferred = service.sendWebHook(map).await()
-
-//        return responseDeferred.await()
+        return service.sendWebHook(map).await()
     }
 }

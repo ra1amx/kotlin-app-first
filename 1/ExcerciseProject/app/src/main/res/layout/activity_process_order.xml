@@ -81,7 +81,6 @@
         android:id="@+id/button_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:layout_margin="16dp"
         android:textColor="#fff"
         android:text="@string/text_send"

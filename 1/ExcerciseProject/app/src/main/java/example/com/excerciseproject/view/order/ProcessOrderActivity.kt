@@ -4,6 +4,8 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.location.Location
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
@@ -73,6 +75,33 @@ class ProcessOrderActivity : AppCompatActivity(),
                 checkbox_send_coordinates.isChecked
             )
         }
+
+        input_phone.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                presenter.onChangePhone(s.toString())
+            }
+        })
+    }
+
+    override fun showButtonEnabled(enabled: Boolean) {
+        button_send.isEnabled = enabled
+        if (enabled) {
+            button_send.setBackgroundColor(resources.getColor(R.color.colorAccent))
+        } else {
+            button_send.setBackgroundDrawable(null)
+        }
+    }
+
+    override fun showProgress(show: Boolean) {
+
     }
 
     override fun showCoordinate(coordinate: LatLng) {

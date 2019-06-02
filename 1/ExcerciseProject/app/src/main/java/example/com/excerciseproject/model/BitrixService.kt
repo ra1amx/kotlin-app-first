@@ -11,6 +11,6 @@ import retrofit2.http.QueryMap
 interface BitrixService {
 
     @POST("crm.lead.add")
-    fun sendWebHook(@QueryMap params: Map<String, String>): Deferred<WebHookResponse>
+    fun sendWebHook(@QueryMap fields: Map<String, String>): Deferred<WebHookResponse>
 
 }

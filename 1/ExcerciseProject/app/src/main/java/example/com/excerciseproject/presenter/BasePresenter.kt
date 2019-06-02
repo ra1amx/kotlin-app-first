@@ -8,7 +8,7 @@ abstract class BasePresenter<View> {
 
     var view: View? = null
 
-    fun onAttach(view: View) {
+    open fun onAttach(view: View) {
         this.view = view
     }
 }
