@@ -1,6 +1,7 @@
 package example.com.excerciseproject.presenter
 
 import example.com.excerciseproject.Work
+import example.com.excerciseproject.model.storage.Storage
 import example.com.excerciseproject.view.WorkType
 import example.com.excerciseproject.view.select.SelectView
 import example.com.excerciseproject.view.select.Selectable
@@ -19,6 +20,11 @@ class SelectPresenter : BasePresenter<SelectView>() {
         this.works = workType.getWorks().map { work ->
             Selectable(work, false)
         }
+
+        works = Storage.workStorage.map.getOrPut(workType, {
+            works
+        })
+
         view?.showWorks(works)
     }
 
@@ -30,6 +36,8 @@ class SelectPresenter : BasePresenter<SelectView>() {
                 work
             }
         }
+        Storage.workStorage.map[workType] = works
+
         view?.showWorks(works)
     }
 
