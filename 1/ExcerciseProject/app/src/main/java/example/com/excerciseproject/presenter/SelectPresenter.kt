@@ -1,5 +1,6 @@
 package example.com.excerciseproject.presenter
 
+import example.com.excerciseproject.Work
 import example.com.excerciseproject.view.WorkType
 import example.com.excerciseproject.view.select.SelectView
 import example.com.excerciseproject.view.select.Selectable
@@ -11,14 +12,25 @@ import example.com.excerciseproject.view.select.Selectable
 class SelectPresenter : BasePresenter<SelectView>() {
 
     lateinit var workType: WorkType
+    var works = listOf<Selectable<Work>>()
 
     fun onAttachWorkType(workType: WorkType) {
         this.workType = workType
-
-        view?.showWorks(workType.getWorks().map { work ->
+        this.works = workType.getWorks().map { work ->
             Selectable(work, false)
-        })
+        }
+        view?.showWorks(works)
     }
 
+    fun onCheckedElement(element: Selectable<Work>) {
+        works = works.map { work ->
+            if (work.item.name == element.item.name) {
+                element
+            } else {
+                work
+            }
+        }
+        view?.showWorks(works)
+    }
 
 }

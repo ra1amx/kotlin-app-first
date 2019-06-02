@@ -23,7 +23,9 @@ class SelectFragment : BaseFragment(), SelectView {
     private val presenter = SelectPresenter()
 
     private val cellAdapter = CellAdapter(cells(
-        CellSelect()
+        CellSelect({ element ->
+            presenter.onCheckedElement(element)
+        })
     ))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +35,7 @@ class SelectFragment : BaseFragment(), SelectView {
             presenter.onAttachWorkType(getWorkType(arguments!!))
         }
 
+        cellAdapter.isEnabledDiffUtil = false
         view.recycler.layoutManager = LinearLayoutManager(view.context)
         view.recycler.adapter = cellAdapter
     }
