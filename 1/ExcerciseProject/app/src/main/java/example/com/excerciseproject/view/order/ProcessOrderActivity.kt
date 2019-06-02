@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import example.com.excerciseproject.R
 import example.com.excerciseproject.presenter.ProcessOrderPresenter
+import im.delight.android.location.SimpleLocation
 
 /**
  * @since 2019
@@ -38,8 +39,11 @@ class ProcessOrderActivity : AppCompatActivity(),
     private var googleMap: GoogleMap? = null
     private var googleApiClient: GoogleApiClient? = null
     private var mapView: View? = null
+    private var simpleLocation: SimpleLocation? = null
 
     private val presenter = ProcessOrderPresenter()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,15 @@ class ProcessOrderActivity : AppCompatActivity(),
         mapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment
         mapView = mapFragment!!.view
         mapFragment!!.getMapAsync(this)
+
+        simpleLocation = SimpleLocation(this)
+        simpleLocation!!.setListener {
+            simpleLocation?.position?.let { position ->
+                presenter.onClickMap(LatLng(position.latitude, position.longitude))
+                simpleLocation!!.endUpdates()
+            }
+        }
+        simpleLocation!!.beginUpdates()
     }
 
     override fun showCoordinate(coordinate: LatLng) {
