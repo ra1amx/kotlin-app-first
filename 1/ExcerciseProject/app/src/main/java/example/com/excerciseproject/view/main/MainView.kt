@@ -8,5 +8,4 @@ import example.com.excerciseproject.Work
  */
 interface MainView {
     fun showWork(works: List<Work>)
-    fun openEmailApp(title: String, body: String, email: String)
 }

@@ -1,10 +1,8 @@
 package example.com.excerciseproject.presenter
 
-import example.com.excerciseproject.Work
-import example.com.excerciseproject.model.Coordinate
 import example.com.excerciseproject.model.MainInteractor
-import example.com.excerciseproject.view.main.MainView
 import example.com.excerciseproject.model.WorkType
+import example.com.excerciseproject.view.main.MainView
 
 /**
  * @since 2019
@@ -20,22 +18,5 @@ class MainPresenter(private val interactor: MainInteractor) {
 
     fun onCheckedType(workType: WorkType) {
         view?.showWork(workType.getWorks())
-    }
-
-    fun onClickSend(name: String,
-                    phone: String,
-                    checkedExercises: MutableList<Work>,
-                    location: Coordinate? = null) {
-//        interactor.sendWebHook(name, phone, sendCoordinates)
-        view?.openEmailApp(
-            "Запрос на работу",
-            """
-                Я хочу чтобы Вы сделали: ${checkedExercises.joinToString(", ")}
-                Имя: $name
-                Телефон: $phone
-                Координаты: ${location?.latitude};${location?.longitude}
-            """.trimIndent(),
-            "eremin.i@bitrix24.ru"
-        )
     }
 }

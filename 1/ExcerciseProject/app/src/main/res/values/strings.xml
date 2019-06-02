@@ -14,4 +14,5 @@
     <string name="text_next">Далее</string>
 
     <string name="google_maps_key">AIzaSyBVb_96CF4Caz69KduaF9RWLqUpZyJvW0E</string>
+    <string name="text_send">Отправить</string>
 </resources>

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.florent37.runtimepermission.RuntimePermission.askPermission
-import de.cketti.mailto.EmailIntentBuilder
 import example.com.excerciseproject.R
 import example.com.excerciseproject.Work
 import example.com.excerciseproject.model.Coordinate
@@ -62,35 +61,6 @@ class MainActivity : AppCompatActivity(), MainView {
         send_button.setOnClickListener {
             startActivity(Intent(this, ProcessOrderActivity::class.java))
         }
-
-//        work_group.setOnCheckedChangeListener { _, i ->
-//            val workType = when (i) {
-//                example.com.excerciseproject.R.id.button_repair -> WorkType.REPAIR
-//                example.com.excerciseproject.R.id.button_service -> WorkType.SERVICE
-//                else -> throw Exception("Not implemented")
-//            }
-//            presenter.onCheckedType(workType)
-//        }
-//
-//        send_button.setOnClickListener {
-//            val name = input_name.text.toString()
-//            val phone = input_phone.text.toString()
-//
-//            presenter.onClickSend(
-//                name,
-//                phone,
-//                exercisesAdapter?.checkedExercises ?: mutableListOf(),
-//                if (checkbox_send_coordinates.isChecked) location else null
-//            )
-//        }
-    }
-
-    override fun openEmailApp(title: String, body: String, email: String) {
-        EmailIntentBuilder.from(this)
-            .to(email)
-            .subject(title)
-            .body(body)
-            .start()
     }
 
     override fun showWork(works: List<Work>) {

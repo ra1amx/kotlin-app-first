@@ -19,9 +19,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import de.cketti.mailto.EmailIntentBuilder
 import example.com.excerciseproject.R
 import example.com.excerciseproject.presenter.ProcessOrderPresenter
 import im.delight.android.location.SimpleLocation
+import kotlinx.android.synthetic.main.activity_process_order.*
 
 /**
  * @since 2019
@@ -43,8 +45,6 @@ class ProcessOrderActivity : AppCompatActivity(),
 
     private val presenter = ProcessOrderPresenter()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_process_order)
@@ -62,11 +62,30 @@ class ProcessOrderActivity : AppCompatActivity(),
             }
         }
         simpleLocation!!.beginUpdates()
+
+        button_send.setOnClickListener {
+            val name = input_name.text.toString()
+            val phone = input_phone.text.toString()
+
+            presenter.onClickSend(
+                name,
+                phone,
+                checkbox_send_coordinates.isChecked
+            )
+        }
     }
 
     override fun showCoordinate(coordinate: LatLng) {
         googleMap?.clear()
         googleMap?.addMarker(MarkerOptions().position(coordinate))
+    }
+
+    override fun openEmailApp(title: String, body: String, email: String) {
+        EmailIntentBuilder.from(this)
+            .to(email)
+            .subject(title)
+            .body(body)
+            .start()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

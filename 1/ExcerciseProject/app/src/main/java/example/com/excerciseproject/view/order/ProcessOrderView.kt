@@ -8,4 +8,5 @@ import com.google.android.gms.maps.model.LatLng
  */
 interface ProcessOrderView {
     fun showCoordinate(coordinate: LatLng)
+    fun openEmailApp(title: String, body: String, email: String)
 }
