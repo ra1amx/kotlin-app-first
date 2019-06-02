@@ -29,7 +29,7 @@ class SelectFragment : BaseFragment() {
         view.recycler.adapter = cellAdapter
 
         val workType = getWorkType(arguments!!)
-        cellAdapter.addItems(workType.getWorks())
+        cellAdapter.setItems(workType.getWorks())
     }
 
     companion object {
