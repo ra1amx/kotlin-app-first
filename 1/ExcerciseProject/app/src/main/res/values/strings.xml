@@ -11,4 +11,5 @@
     <string name="service">Сервис</string>
     <string name="send_coordinates">Отправить мои координаты</string>
     <string name="item">Товар</string>
+    <string name="text_next">Далее</string>
 </resources>

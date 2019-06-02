@@ -10,12 +10,13 @@ import ru.whalemare.cells.cell.CellDelegate
  * @since 2019
  * @author Anton Vlasov - whalemare
  */
-class CellSelect: CellDelegate<Work>(R.layout.cell_select) {
+class CellSelect: CellDelegate<Selectable<Work>>(R.layout.cell_select) {
     override fun isViewType(value: Any): Boolean {
-        return value is Work
+        return (value as? Selectable<Work>) != null
     }
 
-    override fun bind(holder: ViewHolder, item: Work) {
-        holder.itemView.checkbox.text = item.name
+    override fun bind(holder: ViewHolder, item: Selectable<Work>) {
+        holder.itemView.checkbox.text = item.item.name
+        holder.itemView.checkbox.isChecked = item.checked
     }
 }

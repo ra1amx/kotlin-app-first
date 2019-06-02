@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.excerciseproject.R
+import example.com.excerciseproject.Work
+import example.com.excerciseproject.presenter.SelectPresenter
 import example.com.excerciseproject.view.WorkType
 import example.com.excerciseproject.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_selector.view.*
@@ -14,22 +16,29 @@ import ru.whalemare.cells.ext.cells
  * @since 2019
  * @author Anton Vlasov - whalemare
  */
-class SelectFragment : BaseFragment() {
+class SelectFragment : BaseFragment(), SelectView {
 
     override val layout: Int = R.layout.fragment_selector
 
-    val cellAdapter = CellAdapter(cells(
+    private val presenter = SelectPresenter()
+
+    private val cellAdapter = CellAdapter(cells(
         CellSelect()
     ))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            presenter.onAttach(this)
+            presenter.onAttachWorkType(getWorkType(arguments!!))
+        }
 
         view.recycler.layoutManager = LinearLayoutManager(view.context)
         view.recycler.adapter = cellAdapter
+    }
 
-        val workType = getWorkType(arguments!!)
-        cellAdapter.setItems(workType.getWorks())
+    override fun showWorks(works: List<Selectable<Work>>) {
+        cellAdapter.setItems(works)
     }
 
     companion object {
